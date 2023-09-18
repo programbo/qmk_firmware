@@ -19,8 +19,7 @@ DYNAMIC_MACRO_ENABLE = yes
 UART_DEBUG = no
 
 SRC += matrix.c
-QUANTUM_LIB_SRC += uart.c \
-                   spi_master.c
+QUANTUM_LIB_SRC += spi_master.c
 
 OPT_DEFS += -DSLEEP_LED_ENABLE # we need our own sleep callbacks to turn of WS2812 LEDs
 
