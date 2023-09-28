@@ -55,12 +55,10 @@ ifneq ($(strip $(SENDCHAR_DRIVER)),none)
         $(call CATASTROPHIC_ERROR,Invalid SENDCHAR_DRIVER,SENDCHAR_DRIVER="$(SENDCHAR_DRIVER)" is not a valid logging driver type)
     else
         OPT_DEFS += -DSENDCHAR_DRIVER_$(strip $(shell echo $(SENDCHAR_DRIVER) | tr '[:lower:]' '[:upper:]'))
-        ifneq ($(strip $(SENDCHAR_DRIVER)), console)
-            CONSOLE_ENABLE = no
-        endif
+        QUANTUM_SRC += $(QUANTUM_DIR)/logging/sendchar_$(strip $(shell echo $(SENDCHAR_DRIVER) | tr '[:upper:]' '[:lower:]')).c
+
         ifeq ($(strip $(SENDCHAR_DRIVER)), uart)
             QUANTUM_LIB_SRC += uart.c
-            QUANTUM_SRC += $(QUANTUM_DIR)/logging/sendchar_uart.c
         endif
     endif
 else
